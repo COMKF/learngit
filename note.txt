@@ -12,7 +12,8 @@
         （1）Untracked files。未跟踪文件。一般是新建的文件，版本库中没有该文件。
         （2）Changes not staged for commit。已修改（未添加）未提交。版本库中有该文件，但是经过修改后，没有添加到暂存区中，也就不可能提交。
         （3）Changes to be committed。修改将被提交。文件已添加到暂存区中，输入 commit 命令就可以提交。
-        （4）
-               （2）Changes to be committed。已
-               （3）
+        （4）nothing to commit, working tree clean。工作区已清空。这里的意思是版本库的文件现在已经和工作区一致，且暂存区没有文件，提交命令后的状态。
+  使用 git diff 命令可以查看当前工作区的文件与版本库中的文件有何不同。添加文件参数，如： git diff [file] 可查看具体的文件有何不同（做了哪些修改）。
+5 查看 commit 操作的历史记录：使用 git log 命令。如下：
+    
 
