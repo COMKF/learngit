@@ -1,0 +1,18 @@
+安装git的步骤省略
+1 安装完成后需要做一些简单的配置。
+    git config --global user.name "Your Name"
+    git config --global user.email "email@example.com"
+2 创建版本库：在一个合适的目录下（空目录，或者代码的目录），通过 git init 命令把这个目录变成Git可以管理的仓库。
+    .git目录（即版本库，是一个隐藏目录），是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件。
+3 把文件添加到版本库。
+    以readme.txt文件为例，需要以下命令：
+    git add readme.txt    ／／ add 的作用是把文件添加到暂存区中。add 后面可以跟具体的文件名，也可以跟 . 或者-A 添加该目录下所有文件。
+    git commit -m "wrote a readme file"  ／／ commit 的作用是把暂存区中的文件，全部提交到版本库（本地仓库）中。-m 是必选命令，后面跟 注释。
+4 查看版本库状态：用 git status 命令。一般有四个状态：
+        （1）Untracked files。未跟踪文件。一般是新建的文件，版本库中没有该文件。
+        （2）Changes not staged for commit。已修改（未添加）未提交。版本库中有该文件，但是经过修改后，没有添加到暂存区中，也就不可能提交。
+        （3）Changes to be committed。修改将被提交。文件已添加到暂存区中，输入 commit 命令就可以提交。
+        （4）
+               （2）Changes to be committed。已
+               （3）
+
