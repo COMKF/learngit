@@ -47,9 +47,8 @@
   使用版本号，也可以达到相同的效果：git reset --hard 3069e3c。（版本号没必要写全，前几位就可以了，Git会自动去找。）
   这样做，可以让我们直接在版本之间跳跃，它的意义在于，可以让我们从旧版本再返回到最新的版本中。
 7 查看所有命令操作的历史记录：使用 git reflog 命令。不再展示，它可以显示任何一个版本的commit ID，然后使用6中的命令让我们在各版本中跳跃。
-
-    在这里小结一下。版本库中记录了每一次提交时的文件内容，以及生成一个commit ID作为标识。
-    reset命令的作用，就是把版本库中的（我们需要的）文件再恢复到工作区（根据commit ID 或 HEAD指针）。进行reset命令后，工作区中相关的文件就会发生变化。
+    在这里小结一下。版本库中记录了每一次提交时的版本，以及生成一个commit ID作为标识。
+    reset命令的作用，就是把版本库中的（我们需要的）版本再恢复到工作区（根据commit ID 或 HEAD指针）。
 8 使用 git checkout -- file 命令丢弃工作区的修改。要分两种情况：
     （1）一种是文件自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态。（让工作区的文件与版本库中的一致）
     （2）一种是文件已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。（让工作区的文件与暂存区中的一致）
@@ -58,6 +57,27 @@
     使用git reset HEAD [file]，可以把暂存区的文件撤销掉，并且重新放回工作区。
     git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
   小提示：先用9的命令，然后用8的命令。
+10 删除版本库中的文件，使用： git rm [file] 和 git commit -m "remove test.txt" 两个命令共同完成。
+    如果我们误删了工作区中的文件，可以使用 git checkout -- file 进行恢复。
+    可以看出，reset命令于版本级别，checkout -- file 命令作用于文件级别。没必要因为恢复一个文件，返回上一个版本。
+
+11 远程仓库：github。添加SSH密匙和搭建远程仓库看教程即可。
+    关联远程仓库命令：git remote add origin [git@github.com:michaelliao/learngit.git]。 ／／该仓库必须事先搭建好。
+    然后我们可以使用 git remote -v，查看关联的仓库。
+12 第一次从本地仓库向远程仓库推送时：需要使用 git push -u origin master 命令，之后只要用 git push origin master 即可。
+    也可以使用 git pull origin master，从远程仓库下载到本地仓库。
+13 使用 git clone [git@github.com:michaelliao/learngit.git] 直接把仓库中的所有内容克隆下来（用于多人开发）。
+
+14 重点：创建与合并分支。
+    在版本回退里，你已经知道，每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。目前只有一条时间线，叫主分支，就是master。
+    HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
+    当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。
+    从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变。
+    假如我们在dev上的工作完成了，就可以把dev合并到master上。最简单的方法，就是直接把master指向dev的当前提交，就完成了合并。（事实上情况要复杂的多）
+
+    创建dev分支，然后切换到dev分支：使用 git checkout -b dev 命令。
+    git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：git branch dev 和 git checkout dev。
+
 
 
 
