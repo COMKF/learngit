@@ -153,8 +153,21 @@
             bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
             feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
     （2）抓取分支
-        （1）若远程仓库有dev分支，则直接抓取。
-        （1）若远程仓库没有dev分支，则首先在本地仓库建立dev分支，然后推送过去。
+        （1）若本地仓库没有dev分支，远程仓库有dev分支，则直接抓取。
+            git checkout -b dev origin/dev
+        （2）若本地仓库没有dev分支，远程仓库也没有dev分支，则首先在本地仓库建立dev分支，然后推送过去。
+            git checkout -b dev
+            git push origin dev
+        （3）若本地仓库有dev分支，远程仓库也有dev分支，则直推送。
+            git push origin dev
+        （4）若本地仓库有dev分支，远程仓库也有dev分支。
+            （1）尝试推送：git push origin dev
+            （2）若失败，说明远程仓库的最新提交和你试图推送的提交有冲突：需要 git pull ：把最新的提交从origin/dev抓下来。
+                （git pull也失败了，原因是没有指定本地dev分支与远程origin/dev分支的链接，根据提示，设置dev和origin/dev的链接：
+                    git branch --set-upstream dev origin/dev）
+            （3）git pull成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。
+            （4）最后 git push origin dev 。
+
 
 
 
