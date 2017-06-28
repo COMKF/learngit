@@ -77,6 +77,8 @@
 
     创建dev分支，然后切换到dev分支：使用 git checkout -b dev 命令。
     git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：git branch dev 和 git checkout dev。
+    小提示：可使用 git branch 命令查看当前分支。 git branch 命令会列出所有分支，当前分支前面会标一个*号。
+    进行一些操作后回到master分支。
 
 
 
