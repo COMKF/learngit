@@ -140,7 +140,7 @@
 
     新功能必须取消：
     git branch -D feature-vulcan （强行删除）
-19 多人协作
+19 重点：多人协作
     （1）推送分支
         推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
         git push origin master
@@ -167,6 +167,28 @@
                     git branch --set-upstream dev origin/dev）
             （3）git pull成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。
             （4）最后 git push origin dev 。
+20 创建标签
+    发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。
+    将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。
+    其实它就是指向某个commit的指针，所以，创建和删除标签都是瞬间完成的。
+
+    在Git中打标签非常简单，首先，切换到需要打标签的分支上（最好是master上）。
+    输入命令：git tag <name>，比如 git tag v1.0 ，就打上了 v1.0 的标签。默认标签是打在最新提交的commit上的。
+    有需要的话，也可以打在历史提交的 commit 上。先 git log 查看 commit id，然后输入命令： git tag <name> [commit id]。
+    git tag 命令：查看标签。
+    git show <tagname> 命令：查看具体标签信息。
+    还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：git tag -a v0.1 -m "version 0.1 released" 3628164。
+    还可以通过-s用私钥签名一个标签：git tag -s v0.2 -m "signed version 0.2 released" fec145a。
+21 操作标签
+    git tag -d v0.1 命令：删除标签。
+    注意：标签只存在于本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。
+
+    如果要推送某个标签到远程，使用命令 git push origin <tagname>。
+    或者，一次性推送全部尚未推送到远程的本地标签： git push origin --tags。
+
+    如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：git tag -d v0.9。
+    然后，从远程删除。删除命令也是push，但是格式如下：git push origin :refs/tags/v0.9。
+
 
 
 
